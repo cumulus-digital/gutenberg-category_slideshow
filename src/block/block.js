@@ -1,0 +1,169 @@
+/**
+ * BLOCK: gutenberg-category_slideshow
+ *
+ * Registering a basic block with Gutenberg.
+ * Simple block, renders and saves the same content without any interactivity.
+ */
+
+//  Import CSS.
+import './editor.scss';
+import './style.scss';
+
+import debounce from 'lodash-es/debounce';
+
+const { __ } = wp.i18n; // Import __() from wp.i18n
+const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
+const { Button, Panel, PanelBody, PanelRow, SelectControl, RangeControl } = wp.components;
+const { InspectorControls } = wp.editor;
+const { withSelect } = wp.data;
+const { Component } = wp.element;
+
+const blockStyle = {
+	backgroundColor: '#aaa',
+	borderRadius: '3px',
+	color: '#fff',
+	padding: '20px',
+	textAlign: 'center'
+};
+
+/**
+ * Register: aa Gutenberg Block.
+ *
+ * Registers a new block provided a unique name and an object defining its
+ * behavior. Once registered, the block is made editor as an option to any
+ * editor interface where blocks are implemented.
+ *
+ * @link https://wordpress.org/gutenberg/handbook/block-api/
+ * @param  {string}   name     Block name.
+ * @param  {Object}   settings Block settings.
+ * @return {?WPBlock}          The block, if it has been successfully
+ *                             registered; otherwise `undefined`.
+ */
+registerBlockType( 'cumulus-gutenberg/category-slideshow', {
+	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
+	title: 'Category Slideshow',
+	icon: {
+		src: 'images-alt2',
+		foreground: '#3399cc'
+	},
+	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
+	keywords: [
+		'cumulus', 'slideshow', 'flipper'
+	],
+	attributes: {
+		category: {
+			attribute: 'string',
+			default: null
+		},
+		timeout: {
+			attributes: 'integer',
+			default: 2
+		}
+	},
+
+	/**
+	 * The edit function describes the structure of your block in the context of the editor.
+	 * This represents what the editor will render when the block is used.
+	 *
+	 * The "edit" property must be a valid function.
+	 *
+	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
+	 *
+	 * @param {Object} props Props.
+	 * @returns {Mixed} JSX Component.
+	 */
+	edit: withSelect( function( select ) {
+		return {
+			categories: select( 'core' ).getEntityRecords( 'taxonomy', 'category' )
+		};
+	} )(
+		class extends Component {
+			constructor() {
+				super(...arguments);
+				this.onChangeContent = this.onChangeContent.bind(this);
+				this.state = {};
+				const that = this;
+				this.updateSlider = debounce(
+					function() {
+						if (
+							window.gutenberg_category_slideshow &&
+							window.gutenberg_category_slideshow.init
+						) {
+							jQuery('[data-block="' + that.props.clientId + '"] > div').each(
+								window.gutenberg_category_slideshow.init
+							);
+						}
+					},
+					2000
+				);
+			}
+			componentDidMount() {}
+			componentDidUpdate() {
+				this.updateSlider();
+			}
+			componentWillUnmount() {}
+			onChangeContent(data) {}
+			
+			render() {
+				const props = this.props;
+				let categories = [ { label: 'Loading categories...', value: null } ];
+				if ( props.categories && props.categories.length ) {
+					categories = [ { label: 'Select a category', value: null } ];
+					props.categories.forEach( (cat) => {
+						categories.push( {
+							label: cat.name, value: cat.id
+						} );
+					} );
+				}
+				return (
+					<div className={ props.className } data-category={ props.attributes.category } data-timeout={ props.attributes.timeout }>
+						Category Slideshow
+						<InspectorControls>
+							<PanelBody title="Slideshow Options">
+								<PanelRow>
+									<SelectControl
+										label="Media Category:"
+										value={ props.attributes.category }
+										options={ categories }
+										onChange={ (cat) => {
+											props.setAttributes( { category: cat } ) 
+											
+										} }
+									/>
+								</PanelRow>
+							</PanelBody>
+							<PanelBody title="Timer">
+								<h3>Seconds between slides</h3>
+								<PanelRow>
+									<RangeControl
+										value={ props.attributes.timeout }
+										onChange={ ( value ) => props.setAttributes( { timeout: value } ) }
+										min={ 0 }
+										max={ 20 }
+									/>
+								</PanelRow>
+							</PanelBody>
+						</InspectorControls>
+					</div>
+				);
+			}
+		}
+	),
+
+	/**
+	 * The save function defines the way in which the different attributes should be combined
+	 * into the final markup, which is then serialized by Gutenberg into post_content.
+	 *
+	 * The "save" property must be specified and must be a valid function.
+	 *
+	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
+	 *
+	 * @param {Object} props Props.
+	 * @returns {Mixed} JSX Frontend HTML.
+	 */
+	save: ( props ) => {
+		return (
+			<div className={ props.className } data-category={ props.attributes.category }></div>
+		);
+	},
+} );
