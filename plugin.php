@@ -5,7 +5,7 @@
  * Description: Display a slideshow of media within a specified category
  * Author: vena
  * Author URI: https://github.com/vena
- * Version: 1.0.1
+ * Version: 1.0.2
  * License: GPL2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  * GitHub Plugin URI: cumulus-digital/gutenberg-category_slideshow

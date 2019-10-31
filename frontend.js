@@ -54,9 +54,12 @@
             }).done(function(data) {
                 var images = [];
                 data.forEach(function(img, i) {
-                    images.push(
-                        $('<img/>', { src: img.guid, class: i < 1 ? 'current' : '' })
-                    );
+                    if (img.hasOwnProperty('guid')) {
+                        var url = (new URL(img.guid)).pathname;
+                        images.push(
+                            $('<img/>', { src: url, class: i < 1 ? 'current' : '' })
+                        );
+                    }
                 })
                 var container = $('<div/>');
                 container.append(images);
