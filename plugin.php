@@ -6,13 +6,12 @@ namespace CRSG\Wordpress\Gutenberg\CategorySlideshow;
  * Description: Gutenberg block which displays a slideshow of media in a specified category.
  * Version: 2.0.0
  * Author: vena
- * License: GPL2+
- * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
+ * License: UNLICENSED
  * GitHub Plugin URI: cumulus-digital/gutenberg-category_slideshow
  *
  * @category Gutenberg
  * @author vena
- * @version 2.0.0
+ * @version 2.0.1
  */
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
