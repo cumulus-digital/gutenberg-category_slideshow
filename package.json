@@ -1,14 +1,40 @@
 {
-  "name": "gutenberg-category_slideshow-cgb-guten-block",
-  "version": "1.0.0",
-  "private": true,
+  "name": "gutenberg-category_slideshow",
+  "version": "2.0.0",
+  "description": "Gutenberg block which displays a slideshow of media in a specified category.",
+  "author": "vena <daniel.vena@cumulus.com>",
   "scripts": {
-    "start": "cgb-scripts start",
-    "build": "cgb-scripts build",
-    "eject": "cgb-scripts eject"
+    "build": "wp-scripts build",
+    "check-engines": "wp-scripts check-engines",
+    "check-licenses": "wp-scripts check-licenses",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "lint:md:docs": "wp-scripts lint-md-docs",
+    "lint:md:js": "wp-scripts lint-md-js",
+    "lint:pkg-json": "wp-scripts lint-pkg-json",
+    "packages-update": "wp-scripts packages-update",
+    "start": "wp-scripts start",
+    "test:e2e": "wp-scripts test-e2e",
+    "test:unit": "wp-scripts test-unit-js"
   },
-  "dependencies": {
-    "cgb-scripts": "1.21.0",
-    "lodash-es": "^4.17.15"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cumulus-digital/gutenberg-category_slideshow.git"
+  },
+  "keywords": [
+    "gutenberg",
+    "wordpress"
+  ],
+  "bugs": {
+    "url": "https://github.com/cumulus-digital/gutenberg-category_slideshow/issues"
+  },
+  "homepage": "https://github.com/cumulus-digital/gutenberg-category_slideshow#readme",
+  "devDependencies": {
+    "@wordpress/scripts": "^15.0.0",
+    "bourbon": "^7.0.0",
+    "jquery": "^3.6.0",
+    "lodash": "^4.17.21",
+    "postcss-preset-env": "^6.7.0"
   }
 }
