@@ -1,6 +1,6 @@
 {
   "name": "gutenberg-category_slideshow",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Gutenberg block which displays a slideshow of media in a specified category.",
   "author": "vena <daniel.vena@cumulus.com>",
   "license": "UNLICENSED",

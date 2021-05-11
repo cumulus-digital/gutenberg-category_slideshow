@@ -100,7 +100,7 @@ $.fn.crsgCategorySlideshow = function ( ajaxurl ) {
 			if ( runtime > timeout ) {
 				const $current = $this.find( '.current' );
 				let $next = $current.next( 'img' );
-				if ( ! $next.size() ) {
+				if ( ! $next.length ) {
 					$next = $current.siblings( 'img' ).eq( 0 );
 				}
 				$current.removeClass( 'current' );
