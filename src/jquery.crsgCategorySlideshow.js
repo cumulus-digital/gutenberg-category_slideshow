@@ -61,6 +61,7 @@ $.fn.crsgCategorySlideshow = function ( ajaxurl ) {
 								const url = new URL( img.guid ).pathname;
 								images.push(
 									$( '<img/>', {
+										alt: img.hasOwnProperty('post_title') ? img.post_title : '',
 										src: url,
 										class: i < 1 ? 'current' : '',
 									} )
