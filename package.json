@@ -1,6 +1,6 @@
 {
   "name": "gutenberg-category_slideshow",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Gutenberg block which displays a slideshow of media in a specified category.",
   "author": "vena <daniel.vena@cumulus.com>",
   "license": "UNLICENSED",
@@ -18,7 +18,7 @@
     "url": "https://github.com/cumulus-digital/gutenberg-category_slideshow/issues"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^19.2.2",
+    "@wordpress/scripts": "^24.6.0",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21"
   },
@@ -35,6 +35,7 @@
     "packages-update": "wp-scripts packages-update",
     "start": "wp-scripts start",
     "test:e2e": "wp-scripts test-e2e",
-    "test:unit": "wp-scripts test-unit-js"
+    "test:unit": "wp-scripts test-unit-js",
+    "full-upgrade": "npm update; npm run packages-update; npm upgrade"
   }
 }
