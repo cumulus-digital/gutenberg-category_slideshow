@@ -50,7 +50,7 @@ $.fn.crsgCategorySlideshow = function (ajaxurl) {
 						category: cat,
 					},
 					type: "GET",
-					dataType: "jsonp",
+					dataType: "json",
 				}).done(function (ret) {
 					const images = [];
 					ret.forEach(function (img, i) {

@@ -6,14 +6,14 @@ namespace CRSG\Wordpress\Gutenberg\CategorySlideshow;
  * Plugin Name: Image Category Slideshow
  * Plugin URI: https://github.com/cumulus-digital/gutenberg-category_slideshow/
  * Description: Gutenberg block which displays a slideshow of media in a specified category.
- * Version: 2.0.9
+ * Version: 2.1.0
  * Author: vena
  * License: UNLICENSED
  * GitHub Plugin URI: cumulus-digital/gutenberg-category_slideshow
  *
  * @category Gutenberg
  * @author vena
- * @version 2.0.9
+ * @version 2.1.0
  */
 // Exit if accessed directly.
 if (! defined('ABSPATH')) {
@@ -88,11 +88,12 @@ function ajax_handler()
         'posts_per_page' => 20
     );
     $media = \get_posts($args);
+
     if (! empty($_GET['callback'])) {
-        echo $_GET['callback'] . '(' . json_encode($media) . ');';
-    } else {
-        echo json_encode($media);
+        exit($_GET['callback'] . '(' . json_encode($media) . ');');
     }
+
+    exit(json_encode($media));
 }
 add_action('wp_ajax_get_media_by_category', __NAMESPACE__ . '\\ajax_handler');
 add_action('wp_ajax_nopriv_get_media_by_category', __NAMESPACE__ . '\\ajax_handler');
