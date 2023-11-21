@@ -6,7 +6,7 @@ namespace CRSG\Wordpress\Gutenberg\CategorySlideshow;
  * Plugin Name: Image Category Slideshow
  * Plugin URI: https://github.com/cumulus-digital/gutenberg-category_slideshow/
  * Description: Gutenberg block which displays a slideshow of media in a specified category.
- * Version: 2.2.1
+ * Version: 2.2.2
  * Author: vena
  * License: UNLICENSED
  * GitHub Plugin URI: cumulus-digital/gutenberg-category_slideshow
@@ -15,7 +15,7 @@ namespace CRSG\Wordpress\Gutenberg\CategorySlideshow;
  * @author vena
  */
 // Exit if accessed directly.
-if (! defined('ABSPATH')) {
+if (!defined('ABSPATH')) {
     exit;
 }
 
@@ -46,7 +46,7 @@ function frontend_assets()
             $url . '/build/frontend.css'
         );
 
-        if (! \is_admin()) {
+        if (!\is_admin()) {
             $assets = include(\plugin_dir_path(__FILE__) . 'build/frontend.asset.php');
             \wp_enqueue_script(
                 'category_slideshow-frontend-js', // Handle.
@@ -85,7 +85,7 @@ function frontend_assets()
 function ajax_handler()
 {
     $category = json_decode($_GET['category'], true);
-    if (! filter_var($category, FILTER_VALIDATE_INT) || $category == 1) {
+    if (!filter_var($category, FILTER_VALIDATE_INT) || $category == 1) {
         header('HTTP/1.0 400 Bad error');
         exit('{ error: "Bad category." }');
     }
@@ -100,7 +100,7 @@ function ajax_handler()
     );
     $media = \get_posts($args);
 
-    if (! empty($_GET['callback'])) {
+    if (!empty($_GET['callback'])) {
         exit($_GET['callback'] . '(' . json_encode($media) . ');');
     }
 
