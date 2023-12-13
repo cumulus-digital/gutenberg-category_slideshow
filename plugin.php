@@ -6,7 +6,7 @@ namespace CRSG\Wordpress\Gutenberg\CategorySlideshow;
  * Plugin Name: Image Category Slideshow
  * Plugin URI: https://github.com/cumulus-digital/gutenberg-category_slideshow/
  * Description: Gutenberg block which displays a slideshow of media in a specified category.
- * Version: 2.2.2
+ * Version: 2.2.3
  * Author: vena
  * License: UNLICENSED
  * GitHub Plugin URI: cumulus-digital/gutenberg-category_slideshow

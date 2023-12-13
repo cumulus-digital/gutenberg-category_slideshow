@@ -17,7 +17,7 @@
     "url": "https://github.com/cumulus-digital/gutenberg-category_slideshow/issues"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^26.17.0",
+    "@wordpress/scripts": "^26.18.0",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21"
   },
@@ -35,6 +35,6 @@
     "start": "wp-scripts start",
     "test:e2e": "wp-scripts test-e2e",
     "test:unit": "wp-scripts test-unit-js",
-    "full-upgrade": "npm update; npm run packages-update; npm upgrade"
+    "full-upgrade": "npm update && npm run packages-update && npm upgrade"
   }
 }
