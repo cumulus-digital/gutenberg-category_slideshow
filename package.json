@@ -17,7 +17,7 @@
     "url": "https://github.com/cumulus-digital/gutenberg-category_slideshow/issues"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^26.18.0",
+    "@wordpress/scripts": "^27.2.0",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21"
   },
